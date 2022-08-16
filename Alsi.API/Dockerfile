@@ -10,6 +10,7 @@ WORKDIR /src
 COPY ["Alsi.API.csproj", "Alsi.API/"]
 RUN dotnet restore "Alsi.API/Alsi.API.csproj"
 WORKDIR "/src/Alsi.API"
+COPY . .
 RUN dotnet build "Alsi.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
