@@ -6,9 +6,6 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-# Ensure we listen on any IP Address 
-ENV DOTNET_URLS=http://+:5000
-
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
 COPY ["Alsi.API.csproj", "Alsi.API/"]
