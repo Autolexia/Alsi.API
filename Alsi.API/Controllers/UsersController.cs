@@ -1,8 +1,9 @@
 ﻿using Alsi.API.Data;
 using Alsi.API.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Alsi.API.Controllers
 {
@@ -10,7 +11,7 @@ namespace Alsi.API.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         public UsersController(DataContext context)
         {
@@ -18,15 +19,15 @@ namespace Alsi.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<GameUser>> GetUsers()
+        public async Task<ActionResult<IEnumerable<GameUser>>> GetUsers()
         {
-            return _context.Users.ToList();
+            return await _context.Users.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<GameUser> GetUser(int id)
+        public async Task<ActionResult<GameUser>> GetUser(int id)
         {
-            return _context.Users.Find(id);
+            return await _context.Users.FindAsync(id);
         }
     }
 }
