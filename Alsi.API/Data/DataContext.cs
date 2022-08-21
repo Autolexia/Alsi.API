@@ -7,7 +7,7 @@ namespace Alsi.API.Data
     {
         public DataContext(DbContextOptions options) : base(options)
         {
-                
+            Database.EnsureCreated();
         }
 
         public DbSet<GameUser> Users { get; set; }
